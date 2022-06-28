@@ -4,7 +4,7 @@ function session=RunOptoLick(settings)
 % RunTreadmill runs a treadmill task with a gui, will open a treadmill
 % object, a joystick object (if possible) and will try to connect to the
 % plexon map server.
-if ~isempty(timerfindall('name','Main RunTreadmill Timer'))
+if ~isempty(timerfindall('name','Main OptoBox Timer'))
 fprintf('you already have the game running \n');
 return
 end
@@ -73,7 +73,7 @@ autocloselaserserial = onCleanup(@() clear('a'));
 % set up our time recorder, that will use a 0.2 second update rate
 tim = timer('StartFcn',@startfcn,'TimerFcn',@timerfcn,...
     'StopFcn',@stopfcn,'ErrorFcn',@errorfcn,'Period',0.2,...
-    'ExecutionMode','fixedDelay','Name','Main RunTreadmill Timer');
+    'ExecutionMode','fixedDelay','Name','Main OptoBox Timer');
 
 
 
@@ -152,7 +152,7 @@ applysettings;
         output(h.maindsp, 'Enabling Screen Saver...');
         [status, result] = dos('FlipSS /on');
         if(status == 0); output(h.maindsp, 'Screen Saver Enabled.');
-        else output(h.maindsp, regexprep(result,'\n',' '));
+        else, output(h.maindsp, regexprep(result,'\n',' '));
         end
         
         set(h.pause,'String','Start');

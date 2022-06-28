@@ -1,10 +1,10 @@
-function session=RunOptoLick(settings)
-% $Id: RunTreadmill.m 4831 2013-05-13 19:56:09Z nrobinson
+% function session=RunOptoLick(settings)
+% $Id: RunTreadmill.m 4831 2013-05-13 19:56:09Z nrobinson.JHBladon
 % commented by JH Bladon
 % RunTreadmill runs a treadmill task with a gui, will open a treadmill
 % object, a joystick object (if possible) and will try to connect to the
 % plexon map server.
-if ~isempty(timerfindall('name','Main RunTreadmill Timer'))
+if ~isempty(timerfindall('name','Main OptoBox Timer'))
 fprintf('you already have the game running \n');
 return
 end
@@ -73,7 +73,7 @@ autocloselaserserial = onCleanup(@() clear('a'));
 % set up our time recorder, that will use a 0.2 second update rate
 tim = timer('StartFcn',@startfcn,'TimerFcn',@timerfcn,...
     'StopFcn',@stopfcn,'ErrorFcn',@errorfcn,'Period',0.2,...
-    'ExecutionMode','fixedDelay','Name','Main RunTreadmill Timer');
+    'ExecutionMode','fixedDelay','Name','Main OptoBox Timer');
 
 
 
